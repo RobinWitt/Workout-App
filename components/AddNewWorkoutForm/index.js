@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-const StyledForm = styled.form({
-  display: "flex",
-});
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 
-export default function AddNewWorkout() {
+export default function AddNewWorkout({ onSubmit }) {
   return (
     <>
       <h3 id="addNewWorkout">Add new Workout</h3>
-      <form aria-labelledby="addNewWorkout">
+      <StyledForm aria-labelledby="addNewWorkout" onSubmit={onSubmit}>
         <label htmlFor="name">Name</label>
         <input id="name" name="name"></input>
         <label htmlFor="sets">Amount of Sets</label>
@@ -20,7 +21,7 @@ export default function AddNewWorkout() {
         <label htmlFor="break">Duration of Break</label>
         <input id="break" type="number" name="break"></input>
         <button type="submit">Submit</button>
-      </form>
+      </StyledForm>
     </>
   );
 }
