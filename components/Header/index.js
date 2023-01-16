@@ -6,10 +6,11 @@ const StyledHeader = styled.header`
   left: 0;
   max-width: 900px;
   width: 100%;
-  height: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  padding: 0.2rem;
+  text-decoration: underline 2px solid;
   border: 2px solid black;
 `;
 

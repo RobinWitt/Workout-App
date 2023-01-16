@@ -14,17 +14,21 @@ const StyledNavigation = styled.nav`
   border: 2px solid black;
 `;
 
-const StyledLink = styled.a`
-  color: lightcoral;
-`;
-
 export default function Navigation() {
   return (
     <StyledNavigation>
-      <StyledLink href="/">Home</StyledLink>
-      <Link href="/AddNewWorkout">Add new Workout</Link>
-      <Link href="/profile">Profile</Link>
-      <Link href="/settings">Settings</Link>
+      <Link href="/" passHref legacyBehavior>
+        <a>Home</a>
+      </Link>
+      <Link href="/AddNewWorkout" passHref legacyBehavior>
+        <a>Add new Workout</a>
+      </Link>
+      <Link href="/profile" passHref legacyBehavior>
+        <a>Profile</a>
+      </Link>
+      <Link href="/settings" passHref legacyBehavior>
+        <a>Settings</a>
+      </Link>
     </StyledNavigation>
   );
 }

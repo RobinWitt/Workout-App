@@ -17,7 +17,12 @@ export default createGlobalStyle`
   }
   
   main {
-    margin-top: 60px;
-    margin-bottom: 60px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  a {
+    color: lightcoral;
+    text-decoration: none;
   }
   `;

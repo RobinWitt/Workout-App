@@ -1,10 +1,14 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import { workoutAtom } from "@/lib/db";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [workouts, setWorkouts] = useAtom(workoutAtom);
+
   return (
     <>
       <Head>
@@ -15,23 +19,26 @@ export default function Home() {
       </Head>
       <main>
         <ul>
-          <li>
-            <article>
-              <h2>Hangboard 20mm hang</h2>
-              <p>1 Set(s)</p>
-              <p>3 Repetition(s) á 10 Seconds</p>
-              <p>2 Minute(s) Break in between</p>
-              <Link href={`/details/id`}>Click to Edit/Show Details</Link>
-            </article>
-          </li>
-          <li>
-            <article>
-              <h2>Pull-Up</h2>
-              <p>3 Set(s)</p>
-              <p>3 Repetition(s)</p>
-              <p>2 Minute(s) Break in between</p>
-            </article>
-          </li>
+          {workouts.map(
+            ({ name, description, sets, repetitions, duration, breaktime }) => {
+              return (
+                <li key={name}>
+                  <article>
+                    <h2>{name}</h2>
+                    {description ? <p>{description}</p> : ""}
+                    <p>{sets} Set(s)</p>
+                    <p>
+                      {repetitions} Repetition(s) á {duration} Seconds
+                    </p>
+                    <p>{breaktime} Seconds Break in between</p>
+                    <Link href="/details/id" passHref legacyBehavior>
+                      <a>Show Details</a>
+                    </Link>
+                  </article>
+                </li>
+              );
+            }
+          )}
         </ul>
       </main>
     </>

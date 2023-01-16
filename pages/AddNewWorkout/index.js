@@ -1,11 +1,29 @@
 import AddNewWorkout from "@/components/AddNewWorkoutForm";
+import { useAtom } from "jotai";
+import { workoutAtom } from "@/lib/db";
 import Head from "next/head";
 
 export default function AddNewWorkoutPage() {
+  const [workouts, setWorkouts] = useAtom(workoutAtom);
   function handleSubmit(e) {
     e.preventDefault();
 
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    const { name, description, sets, repetitions, duration, breaktime } = data;
+
     console.log("submitted");
+    setWorkouts([
+      ...workouts,
+      {
+        name,
+        description,
+        sets: parseInt(sets),
+        repetitions: parseInt(repetitions),
+        duration: parseInt(duration),
+        breaktime: parseInt(breaktime),
+      },
+    ]);
   }
 
   return (
